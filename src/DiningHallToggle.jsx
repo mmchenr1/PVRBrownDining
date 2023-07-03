@@ -1,54 +1,60 @@
-import {StyleSheet, View } from "react-native"
+import {StyleSheet, View, Text, Button, Pressable } from "react-native"
 import React, { useState } from 'react';
 
 
-
 export const DiningHallToggle = () => {
-    const[rattySelected, setRattySelected] = useState<Boolean>(true); //initialize Ratty to be selected!
-    <View>
-        {/* <Button 
-            classNamre="ratty-toggle-container"
-            title=""
-        /> */}
-        <View className="ratty-toggle-container">
-            <View style={styles.rectangle_ratty}/>
-            <View style={rattySelected ? styles.rectangle_selected : styles.rectangle_unselected}/>
-            <View className={"ratty-toggle-label"} style={rattySelected ? styles.diningLabel_selected : styles.diningLabel_unselected}>Ratty</View> {/* Ratty starts out selected until toggled! */}
-        </View>
-        <View className="andrews-toggle-container">
-            <View style={styles.rectangle_andrews}/>
-            <View style={rattySelected ? styles.rectangle_unselected : styles.rectangle_selected}/>
-            <View className={"andrews-toggle-label"} style={rattySelected ? styles.diningLabel_unselected : styles.diningLabel_selected}>Andrews</View>
-        </View>
-    </View>
-}
+    const[rattySelected, setRattySelected] = useState(true); //initialize Ratty to be selected!
 
-const toggleSelectedDiningHall = () => {
-    if(rattySelected){
-        setRattySelected(false);
-    } else{
-        setRattySelected(true);
-    }
+    return(
+    <View style={styles.root}>
+        <View className="ratty-toggle-container">
+            <Pressable style={[styles.ratty_toggle_rectangle, rattySelected ? styles.rectangle_selected : styles.rectangle_unselected]}
+                onPress = {() => setRattySelected(true)}>
+                <Text className={"ratty-toggle-label"} style={[styles.diningLabel, rattySelected ? styles.diningLabel_selected : styles.diningLabel_unselected]}>
+                    Ratty
+                    </Text>
+            </Pressable>
+        </View> 
+   
+        <View className="andrews-toggle-container">
+            <Pressable style={[styles.andrews_toggle_rectangle, rattySelected ? styles.rectangle_unselected : styles.rectangle_selected]}
+                onPress = {() => setRattySelected(false)}>
+                <Text className={"andrews-toggle-label"} style={[styles.diningLabel, rattySelected ? styles.diningLabel_unselected : styles.diningLabel_selected]}>Andrews</Text>
+            </Pressable>
+        </View>  
+    </View>);
 }
 
 const styles = StyleSheet.create({
+    root: {
+        width: '86.5%',
+        height: 36,
+        flexShrink: 0,
+        flexDirection: 'row',
+        paddingLeft: 26.5,
+        paddingRight: 26.5,
+        paddingTop: 25,
+        paddingBottom: 25,
+    },
+    diningLabel:{
+        flexDirection: 'column',
+        flexShrink: 0,
+        height: 18,
+        fontSize: 15,
+        textAlign: 'center',
+        fontFamily:"Montserrat",
+        fontStyle: 'normal',
+    },
     diningLabel_selected: {
-        height: 18,
-        fontSize: 15,
         fontWeight: '700',
-        textAlign: 'center',
-        textAlignVertical: 'top',
-        color: '#ffffff',
+        color: '#FFF',
       },
-      diningLabel_unselected: {
-        height: 18,
-        fontSize: 15,
+    diningLabel_unselected: {
         fontWeight: '500',
-        textAlign: 'center',
-        textAlignVertical: 'top',
         color: '#414141',
-      },
-      rectangle_ratty: {
+    },
+    ratty_toggle_rectangle: {
+        justifyContent: 'center',
         display: 'flex',
         flexDirection: 'column',
         width: 170,
@@ -56,16 +62,19 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 8,
         borderBottomLeftRadius: 8,
       },
-      rectangle_andrews: {
+    andrews_toggle_rectangle: {
+        justifyContent: 'center',
         display: 'flex',
         flexDirection: 'column',
         width: 170,
         height: 36,
         borderTopRightRadius: 8,
         borderBottomRightRadius: 8,
+      },
+      rectangle_selected: {
+        backgroundColor: '#C00',
+      },
+      rectangle_unselected: {
+        backgroundColor: '#F4F3F3',
       }
 });
-
-//TODO need a determine style function for Ratty and Andrews!
-
-export default {DiningHallToggle}
