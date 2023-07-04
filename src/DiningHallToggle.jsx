@@ -1,8 +1,8 @@
-import {StyleSheet, View, Text, Button, Pressable } from "react-native"
+import {StyleSheet, View, Text, Pressable} from "react-native"
 import React, { useState } from 'react';
 
 
-export const DiningHallToggle = () => {
+export const DiningHallToggle = (setSelectedDiningHall) => {
     const[rattySelected, setRattySelected] = useState(true); //initialize Ratty to be selected!
 
     return(
@@ -31,10 +31,6 @@ const styles = StyleSheet.create({
         height: 36,
         flexShrink: 0,
         flexDirection: 'row',
-        paddingLeft: 26.5,
-        paddingRight: 26.5,
-        paddingTop: 25,
-        paddingBottom: 25,
     },
     diningLabel:{
         flexDirection: 'column',
@@ -42,15 +38,13 @@ const styles = StyleSheet.create({
         height: 18,
         fontSize: 15,
         textAlign: 'center',
-        fontFamily:"Montserrat",
-        fontStyle: 'normal',
     },
     diningLabel_selected: {
-        fontWeight: '700',
+        fontFamily:"Montserrat-Bold",
         color: '#FFF',
       },
     diningLabel_unselected: {
-        fontWeight: '500',
+        fontFamily:"Montserrat-Medium",
         color: '#414141',
     },
     ratty_toggle_rectangle: {
